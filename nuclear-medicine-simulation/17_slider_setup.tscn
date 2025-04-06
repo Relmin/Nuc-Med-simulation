@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgwptg6abe565"]
+
+[ext_resource type="Script" uid="uid://2pdvmadfdd0d" path="res://17_slider_setup.gd" id="1_cy2ej"]
+
+[node name="17SliderSetup" type="PanelContainer"]
+z_index = -1
+offset_right = 216.0
+offset_bottom = 202.0
+scale = Vector2(2, 2)
+script = ExtResource("1_cy2ej")
+
+[node name="SliderContainer" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 25
+columns = 9
+
+[node name="VSlider1" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 1
+max_value = 10.0
+
+[node name="VSlider2" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider3" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider4" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider5" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider6" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider7" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider8" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider9" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider10" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider11" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider12" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider13" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider14" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider15" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider16" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider17" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2

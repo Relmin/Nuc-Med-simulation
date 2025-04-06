@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx03276rnh77p"]
+
+[ext_resource type="Script" uid="uid://bwdkrkvpa8m7j" path="res://cardiac_bulls_eye_scene.gd" id="1_3cuiu"]
+[ext_resource type="PackedScene" uid="uid://kp1ak77t5bq3" path="res://cardiac_bulls_eye.tscn" id="2_wstp8"]
+[ext_resource type="PackedScene" uid="uid://dfnnihe7ys538" path="res://3_slider_setup.tscn" id="3_5ko1i"]
+[ext_resource type="PackedScene" uid="uid://bgwptg6abe565" path="res://17_slider_setup.tscn" id="4_5ko1i"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4ubc3"]
+
+[node name="CardiacBullsEyeScene" type="Node"]
+script = ExtResource("1_3cuiu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.564706, 0.643137, 0.682353, 1)
+
+[node name="CardiacBullseye" parent="." instance=ExtResource("2_wstp8")]
+offset_left = -99.0
+offset_top = -214.0
+offset_right = -99.0
+offset_bottom = -214.0
+
+[node name="3SliderSetup" parent="." instance=ExtResource("3_5ko1i")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 148.0
+offset_right = -144.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelRCASlider" parent="3SliderSetup/SliderBox/RCASlider" index="0"]
+layout_mode = 0
+
+[node name="LabelRCXSlider" parent="3SliderSetup/SliderBox/RCXSlider" index="0"]
+layout_mode = 0
+
+[node name="17SliderSetup" parent="." instance=ExtResource("4_5ko1i")]
+z_index = 0
+offset_left = 1272.0
+offset_top = 112.0
+offset_right = 1506.0
+offset_bottom = 308.0
+
+[node name="ColorMenuBackground" type="PanelContainer" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 44.0
+offset_top = 22.0
+offset_right = 405.0
+offset_bottom = 94.0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="ColorMenuButton" type="MenuButton" parent="ColorMenuBackground"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 46
+theme_override_icons/icon = SubResource("CanvasTexture_4ubc3")
+text = "Color Gradients"
+item_count = 2
+popup/item_0/text = "Heat Map"
+popup/item_0/id = 0
+popup/item_1/text = "Greyscale"
+popup/item_1/id = 1
+
+[node name="InputMenuBackground" type="PanelContainer" parent="."]
+offset_left = 44.0
+offset_top = 771.0
+offset_right = 407.0
+offset_bottom = 843.0
+metadata/_edit_group_ = true
+
+[node name="InputMenuButton" type="MenuButton" parent="InputMenuBackground"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Slider Set-up"
+item_count = 2
+popup/item_0/text = "Coronary Artery Sliders"
+popup/item_0/id = 0
+popup/item_1/text = "17 Segment Sliders"
+popup/item_1/id = 1
+
+[connection signal="drag_ended" from="3SliderSetup/SliderBox/LADSlider" to="." method="_on_lad_slider_drag_ended"]
+
+[editable path="3SliderSetup"]

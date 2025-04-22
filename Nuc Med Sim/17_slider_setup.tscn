@@ -1,0 +1,108 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi4lwsisg22wo"]
+
+[sub_resource type="GDScript" id="GDScript_va8bv"]
+script/source = "extends PanelContainer
+
+#@export_range(0, 10) var vslider_1_value = $SliderContainer/VSlider1.value
+#@export_range(0, 10) var vslider_2_value = $SliderContainer/VSlider2.value
+#@export_range(0, 10) var vslider_3_value = $SliderContainer/VSlider3.value
+#@export_range(0, 10) var vslider_4_value = $SliderContainer/VSlider4.value
+#@export_range(0, 10) var vslider_5_value = $SliderContainer/VSlider5.value
+#@export_range(0, 10) var vslider_6_value = $SliderContainer/VSlider6.value
+#@export_range(0, 10) var vslider_7_value = $SliderContainer/VSlider7.value
+#@export_range(0, 10) var vslider_8_value = $SliderContainer/VSlider8.value
+#@export_range(0, 10) var vslider_9_value = $SliderContainer/VSlider9.value
+#@export_range(0, 10) var vslider_10_value = $SliderContainer/VSlider10.value
+#@export_range(0, 10) var vslider_11_value = $SliderContainer/VSlider11.value
+#@export_range(0, 10) var vslider_12_value = $SliderContainer/VSlider12.value
+#@export_range(0, 10) var vslider_13_value = $SliderContainer/VSlider13.value
+#@export_range(0, 10) var vslider_14_value = $SliderContainer/VSlider14.value
+#@export_range(0, 10) var vslider_15_value = $SliderContainer/VSlider15.value
+#@export_range(0, 10) var vslider_16_value = $SliderContainer/VSlider16.value
+#@export_range(0, 10) var vslider_17_value = $SliderContainer/VSlider17.value
+"
+
+[node name="17SliderSetup" type="PanelContainer"]
+z_index = -1
+offset_right = 216.0
+offset_bottom = 202.0
+scale = Vector2(2, 2)
+script = SubResource("GDScript_va8bv")
+
+[node name="SliderContainer" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 25
+columns = 9
+
+[node name="VSlider1" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 1
+max_value = 10.0
+
+[node name="VSlider2" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider3" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider4" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider5" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider6" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider7" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider8" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider9" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider10" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider11" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider12" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider13" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider14" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider15" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider16" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="VSlider17" type="VSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2

@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cx03276rnh77p"]
+[gd_scene load_steps=25 format=3 uid="uid://cx03276rnh77p"]
 
 [ext_resource type="Script" uid="uid://bwdkrkvpa8m7j" path="res://cardiac_bulls_eye_scene.gd" id="1_3cuiu"]
 [ext_resource type="Script" uid="uid://dubqhika4ykb0" path="res://cardiac_bulls_eye.gd" id="2_va8bv"]
+[ext_resource type="Texture2D" uid="uid://cod1brhs0ap2s" path="res://art/cardiac_numbers.png" id="2_xnr1l"]
 [ext_resource type="Texture2D" uid="uid://d185blyi2lh45" path="res://art/1_basal_anterior.png" id="3_xnr1l"]
 [ext_resource type="Texture2D" uid="uid://b0elrivr3xvpb" path="res://art/2_basal_anteroseptal.png" id="4_s55dx"]
 [ext_resource type="Texture2D" uid="uid://bpjs7ramcprmp" path="res://art/3_basal_inferoseptal.png" id="5_t57mi"]
@@ -18,9 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://bgg6t36i5mjo0" path="res://art/14_apical_septal.png" id="16_86tcf"]
 [ext_resource type="Texture2D" uid="uid://1q8el13naogp" path="res://art/15_apical_inferior.png" id="17_661hm"]
 [ext_resource type="Texture2D" uid="uid://ggufig487owr" path="res://art/16_apical_lateral.png" id="18_sr4o5"]
-[ext_resource type="Texture2D" uid="uid://bbk7q78wjjebo" path="res://art/apex_area.png" id="19_8h0g4"]
 [ext_resource type="Texture2D" uid="uid://bva71rjwcgsqo" path="res://art/17_segment_lines.png" id="20_ocogh"]
 [ext_resource type="Script" uid="uid://cnjaeddb2mb2a" path="res://3_slider_setup.gd" id="21_f4wm5"]
+[ext_resource type="Theme" uid="uid://dnaciu6f0ms0u" path="res://DyslexicFontTheme.tres" id="21_va8bv"]
 
 [sub_resource type="GDScript" id="GDScript_va8bv"]
 script/source = "extends PanelContainer
@@ -40,76 +41,205 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.564706, 0.643137, 0.682353, 1)
 
-[node name="3SliderSetup" type="PanelContainer" parent="."]
-modulate = Color(0.564706, 0.643137, 0.682353, 1)
+[node name="TextEdit" type="TextEdit" parent="BackgroundColorRect"]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 27.0
+offset_right = 1600.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 40
+text = "Cardiac Bullseye Simulation"
+
+[node name="RestSection" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 50.0
+offset_top = 150.0
+offset_right = 637.0
+offset_bottom = 1064.0
+
+[node name="RestLabel" type="TextEdit" parent="RestSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Rest"
+
+[node name="RestNumbers" type="Sprite2D" parent="RestSection"]
+z_index = 2
+position = Vector2(308, 318)
+texture = ExtResource("2_xnr1l")
+
+[node name="StressSection" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -121.0
-offset_top = -247.0
-offset_right = -65.0
-offset_bottom = -205.0
+offset_left = -288.0
+offset_top = -930.0
+offset_right = 299.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StressLabel" type="TextEdit" parent="StressSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Stress
+"
+
+[node name="StressNumbers" type="Sprite2D" parent="StressSection"]
+z_index = 2
+position = Vector2(301, 317)
+texture = ExtResource("2_xnr1l")
+
+[node name="DifferenceSection" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -624.0
+offset_top = -930.0
+offset_right = -37.0
+offset_bottom = -360.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextEdit" type="TextEdit" parent="DifferenceSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Summed Difference Score"
+
+[node name="3SliderSetupRest" type="PanelContainer" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -352.0
+offset_right = -85.0
+offset_bottom = -288.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(5, 5)
 size_flags_vertical = 8
 script = ExtResource("21_f4wm5")
+metadata/_edit_group_ = true
 
-[node name="SliderBox" type="HBoxContainer" parent="3SliderSetup"]
+[node name="SliderBox" type="HBoxContainer" parent="3SliderSetupRest"]
 layout_mode = 2
 
-[node name="LADSlider" type="VSlider" parent="3SliderSetup/SliderBox" groups=["lad_bullseye"]]
+[node name="LADSlider" type="VSlider" parent="3SliderSetupRest/SliderBox" groups=["lad_bullseye"]]
 layout_mode = 2
 max_value = 9.0
 
-[node name="LabelLADSlider" type="Label" parent="3SliderSetup/SliderBox/LADSlider"]
+[node name="LabelLADSlider" type="Label" parent="3SliderSetupRest/SliderBox/LADSlider"]
 layout_mode = 2
 offset_left = 60.0
 offset_top = 42.0
 offset_right = 61.0
 offset_bottom = 65.0
 
-[node name="RCASlider" type="VSlider" parent="3SliderSetup/SliderBox"]
+[node name="RCASlider" type="VSlider" parent="3SliderSetupRest/SliderBox"]
 layout_mode = 2
 max_value = 9.0
 
-[node name="LabelRCASlider" type="Label" parent="3SliderSetup/SliderBox/RCASlider"]
+[node name="LabelRCASlider" type="Label" parent="3SliderSetupRest/SliderBox/RCASlider"]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 42.0
 offset_right = 41.0
 offset_bottom = 65.0
 
-[node name="LCXSlider" type="VSlider" parent="3SliderSetup/SliderBox"]
+[node name="LCXSlider" type="VSlider" parent="3SliderSetupRest/SliderBox"]
 layout_mode = 2
 max_value = 9.0
 
-[node name="LabelLCXSlider" type="Label" parent="3SliderSetup/SliderBox/LCXSlider"]
+[node name="LabelLCXSlider" type="Label" parent="3SliderSetupRest/SliderBox/LCXSlider"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 42.0
 offset_right = 21.0
 offset_bottom = 65.0
 
-[node name="17SliderSetup" type="PanelContainer" parent="."]
+[node name="3SliderSetupRest2" type="PanelContainer" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -760.0
+offset_top = -352.0
+offset_right = -701.0
+offset_bottom = -288.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(5, 5)
+size_flags_vertical = 8
+script = ExtResource("21_f4wm5")
+metadata/_edit_group_ = true
+
+[node name="SliderBox" type="HBoxContainer" parent="3SliderSetupRest2"]
+layout_mode = 2
+
+[node name="LADSlider" type="VSlider" parent="3SliderSetupRest2/SliderBox" groups=["lad_bullseye"]]
+layout_mode = 2
+max_value = 9.0
+
+[node name="LabelLADSlider" type="Label" parent="3SliderSetupRest2/SliderBox/LADSlider"]
+layout_mode = 2
+offset_left = 60.0
+offset_top = 42.0
+offset_right = 61.0
+offset_bottom = 65.0
+
+[node name="RCASlider" type="VSlider" parent="3SliderSetupRest2/SliderBox"]
+layout_mode = 2
+max_value = 9.0
+
+[node name="LabelRCASlider" type="Label" parent="3SliderSetupRest2/SliderBox/RCASlider"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 42.0
+offset_right = 41.0
+offset_bottom = 65.0
+
+[node name="LCXSlider" type="VSlider" parent="3SliderSetupRest2/SliderBox"]
+layout_mode = 2
+max_value = 9.0
+
+[node name="LabelLCXSlider" type="Label" parent="3SliderSetupRest2/SliderBox/LCXSlider"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 42.0
+offset_right = 21.0
+offset_bottom = 65.0
+
+[node name="17SliderSetupRest" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 z_index = -1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -442.0
-offset_top = -416.0
-offset_right = -226.0
-offset_bottom = -214.0
+offset_left = -1768.0
+offset_top = -368.0
+offset_right = -1568.0
+offset_bottom = -199.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(2, 2)
 script = SubResource("GDScript_va8bv")
+metadata/_edit_group_ = true
 
-[node name="SliderContainer" type="GridContainer" parent="17SliderSetup"]
+[node name="SliderContainer" type="GridContainer" parent="17SliderSetupRest"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -117,110 +247,225 @@ theme_override_constants/h_separation = 7
 theme_override_constants/v_separation = 25
 columns = 9
 
-[node name="VSlider1" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider1" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_horizontal = 1
 max_value = 9.0
 
-[node name="VSlider2" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider2" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider3" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider3" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider4" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider4" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider5" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider5" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider6" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider6" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider7" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider7" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider8" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider8" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider9" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider9" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider10" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider10" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider11" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider11" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider12" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider12" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider13" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider13" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider14" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider14" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider15" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider15" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider16" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider16" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="VSlider17" type="VSlider" parent="17SliderSetup/SliderContainer"]
+[node name="VSlider17" type="VSlider" parent="17SliderSetupRest/SliderContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 max_value = 9.0
 
-[node name="CardiacBullseye" type="Control" parent="."]
+[node name="17SliderSetupRest2" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = -1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1152.0
+offset_top = -368.0
+offset_right = -952.0
+offset_bottom = -199.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+script = SubResource("GDScript_va8bv")
+metadata/_edit_group_ = true
+
+[node name="SliderContainer" type="GridContainer" parent="17SliderSetupRest2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 25
+columns = 9
+
+[node name="VSlider1" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 1
+max_value = 9.0
+
+[node name="VSlider2" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider3" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider4" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider5" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider6" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider7" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider8" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider9" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider10" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider11" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider12" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider13" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider14" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider15" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider16" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="VSlider17" type="VSlider" parent="17SliderSetupRest2/SliderContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+max_value = 9.0
+
+[node name="CardiacBullseyeRest" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-grow_horizontal = 2
+offset_left = 336.0
+offset_top = -92.0
+offset_right = 336.0
+offset_bottom = -92.0
 grow_vertical = 2
+scale = Vector2(0.95, 0.95)
 script = ExtResource("2_va8bv")
+metadata/_edit_group_ = true
 
-[node name="OneArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="OneArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(20, -119)
 texture = ExtResource("3_xnr1l")
 metadata/_edit_group_ = true
 
-[node name="OneColor" type="ColorRect" parent="CardiacBullseye/OneArea" groups=["all_bullseye", "lad_bullseye"]]
+[node name="OneColor" type="ColorRect" parent="CardiacBullseyeRest/OneArea" groups=["all_bullseye", "lad_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_top = -0.330739
@@ -230,13 +475,13 @@ offset_top = -57.0
 offset_right = 137.0
 offset_bottom = -118.0
 
-[node name="TwoArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="TwoArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(-111, -101)
 texture = ExtResource("4_s55dx")
 metadata/_edit_group_ = true
 
-[node name="TwoColor" type="ColorRect" parent="CardiacBullseye/TwoArea" groups=["all_bullseye", "lad_bullseye"]]
+[node name="TwoColor" type="ColorRect" parent="CardiacBullseyeRest/TwoArea" groups=["all_bullseye", "lad_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_left = -0.236434
@@ -247,13 +492,13 @@ offset_top = -118.0
 offset_right = -10.0001
 offset_bottom = 80.9999
 
-[node name="ThreeArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="ThreeArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(-111, 123)
 texture = ExtResource("5_t57mi")
 metadata/_edit_group_ = true
 
-[node name="ThreeColor" type="ColorRect" parent="CardiacBullseye/ThreeArea" groups=["all_bullseye", "rca_bullseye"]]
+[node name="ThreeColor" type="ColorRect" parent="CardiacBullseyeRest/ThreeArea" groups=["all_bullseye", "rca_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_left = -0.255814
@@ -264,13 +509,13 @@ offset_top = -116.0
 offset_right = 89.0
 offset_bottom = 119.0
 
-[node name="FourArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="FourArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(20, 143)
 texture = ExtResource("6_j2oab")
 metadata/_edit_group_ = true
 
-[node name="FourColor" type="ColorRect" parent="CardiacBullseye/FourArea" groups=["all_bullseye", "rca_bullseye"]]
+[node name="FourColor" type="ColorRect" parent="CardiacBullseyeRest/FourArea" groups=["all_bullseye", "rca_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_top = -0.360465
@@ -281,13 +526,13 @@ offset_top = -57.0
 offset_right = 135.0
 offset_bottom = 59.0
 
-[node name="FiveArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="FiveArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(151, 124)
 texture = ExtResource("7_j0uup")
 metadata/_edit_group_ = true
 
-[node name="FiveColor" type="ColorRect" parent="CardiacBullseye/FiveArea" groups=["all_bullseye", "lcx_bullseye"]]
+[node name="FiveColor" type="ColorRect" parent="CardiacBullseyeRest/FiveArea" groups=["all_bullseye", "lcx_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_left = -0.190661
@@ -299,13 +544,13 @@ offset_top = -124.0
 offset_right = 102.0
 offset_bottom = 120.0
 
-[node name="SixArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="SixArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(151, -100)
 texture = ExtResource("8_7im4s")
 metadata/_edit_group_ = true
 
-[node name="SixColor" type="ColorRect" parent="CardiacBullseye/SixArea" groups=["all_bullseye", "lcx_bullseye"]]
+[node name="SixColor" type="ColorRect" parent="CardiacBullseyeRest/SixArea" groups=["all_bullseye", "lcx_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_left = -0.272374
@@ -316,13 +561,13 @@ offset_top = -117.0
 offset_right = 94.0
 offset_bottom = 123.0
 
-[node name="SevenArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="SevenArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(20, -83)
 texture = ExtResource("9_bgda1")
 metadata/_edit_group_ = true
 
-[node name="SevenColor" type="ColorRect" parent="CardiacBullseye/SevenArea" groups=["all_bullseye", "lad_bullseye"]]
+[node name="SevenColor" type="ColorRect" parent="CardiacBullseyeRest/SevenArea" groups=["all_bullseye", "lad_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_left = -0.145161
@@ -333,13 +578,13 @@ offset_top = -57.0
 offset_right = 103.0
 offset_bottom = 58.0
 
-[node name="EightArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="EightArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(-75, -70)
 texture = ExtResource("10_jb5ys")
 metadata/_edit_group_ = true
 
-[node name="EightColor" type="ColorRect" parent="CardiacBullseye/EightArea" groups=["all_bullseye", "lad_bullseye"]]
+[node name="EightColor" type="ColorRect" parent="CardiacBullseyeRest/EightArea" groups=["all_bullseye", "lad_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_left = -0.241935
@@ -350,13 +595,13 @@ offset_top = -88.0
 offset_right = 85.0
 offset_bottom = 102.0
 
-[node name="NineArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="NineArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(-75, 92)
 texture = ExtResource("11_gqe6u")
 metadata/_edit_group_ = true
 
-[node name="NineColor" type="ColorRect" parent="CardiacBullseye/NineArea" groups=["all_bullseye", "rca_bullseye"]]
+[node name="NineColor" type="ColorRect" parent="CardiacBullseyeRest/NineArea" groups=["all_bullseye", "rca_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_left = -0.231183
@@ -368,13 +613,13 @@ offset_top = -97.0
 offset_right = 84.0
 offset_bottom = 99.0
 
-[node name="TenArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="TenArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(20, 107)
 texture = ExtResource("12_tj3tr")
 metadata/_edit_group_ = true
 
-[node name="TenColor" type="ColorRect" parent="CardiacBullseye/TenArea" groups=["all_bullseye", "rca_bullseye"]]
+[node name="TenColor" type="ColorRect" parent="CardiacBullseyeRest/TenArea" groups=["all_bullseye", "rca_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_top = -0.419355
@@ -385,13 +630,13 @@ offset_top = -61.0
 offset_right = 106.0
 offset_bottom = 60.0
 
-[node name="ElevenArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="ElevenArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(115, 93)
 texture = ExtResource("13_7kwb3")
 metadata/_edit_group_ = true
 
-[node name="ElevenColor" type="ColorRect" parent="CardiacBullseye/ElevenArea" groups=["all_bullseye", "lcx_bullseye"]]
+[node name="ElevenColor" type="ColorRect" parent="CardiacBullseyeRest/ElevenArea" groups=["all_bullseye", "lcx_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_left = -0.221622
@@ -403,13 +648,13 @@ offset_top = -92.0
 offset_right = 75.0
 offset_bottom = 95.0
 
-[node name="TweleveArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="TweleveArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(115, -69)
 texture = ExtResource("14_hx70q")
 metadata/_edit_group_ = true
 
-[node name="TwelveColor" type="ColorRect" parent="CardiacBullseye/TweleveArea" groups=["all_bullseye", "lcx_bullseye"]]
+[node name="TwelveColor" type="ColorRect" parent="CardiacBullseyeRest/TweleveArea" groups=["all_bullseye", "lcx_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_left = -0.172973
@@ -421,13 +666,13 @@ offset_top = -86.0
 offset_right = 75.0
 offset_bottom = 103.0
 
-[node name="ThirteenArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="ThirteenArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(20, -47)
 texture = ExtResource("15_vov6u")
 metadata/_edit_group_ = true
 
-[node name="ThirteenColor" type="ColorRect" parent="CardiacBullseye/ThirteenArea" groups=["all_bullseye", "lad_bullseye"]]
+[node name="ThirteenColor" type="ColorRect" parent="CardiacBullseyeRest/ThirteenArea" groups=["all_bullseye", "lad_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_top = -0.205357
@@ -437,13 +682,13 @@ offset_top = -49.0
 offset_right = 106.0
 offset_bottom = 50.0
 
-[node name="FourteenArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="FourteenArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(-37, 10)
 texture = ExtResource("16_86tcf")
 metadata/_edit_group_ = true
 
-[node name="FourteenColor" type="ColorRect" parent="CardiacBullseye/FourteenArea" groups=["all_bullseye", "lad_bullseye"]]
+[node name="FourteenColor" type="ColorRect" parent="CardiacBullseyeRest/FourteenArea" groups=["all_bullseye", "lad_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_top = -0.15625
@@ -452,13 +697,13 @@ offset_top = -76.0
 offset_right = 57.0
 offset_bottom = 91.0
 
-[node name="FifteenArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="FifteenArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(20, 67)
 texture = ExtResource("17_661hm")
 metadata/_edit_group_ = true
 
-[node name="FifteenColor" type="ColorRect" parent="CardiacBullseye/FifteenArea" groups=["all_bullseye", "rca_bullseye"]]
+[node name="FifteenColor" type="ColorRect" parent="CardiacBullseyeRest/FifteenArea" groups=["all_bullseye", "rca_bullseye"]]
 show_behind_parent = true
 anchors_preset = -1
 anchor_top = -0.292035
@@ -468,76 +713,809 @@ offset_top = -49.0
 offset_right = 114.0
 offset_bottom = 48.0
 
-[node name="SixteenArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="SixteenArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(77, 10)
 texture = ExtResource("18_sr4o5")
 metadata/_edit_group_ = true
 
-[node name="SixteenColor" type="ColorRect" parent="CardiacBullseye/SixteenArea" groups=["all_bullseye", "lcx_bullseye"]]
+[node name="SixteenColor" type="ColorRect" parent="CardiacBullseyeRest/SixteenArea" groups=["all_bullseye", "lcx_bullseye"]]
 show_behind_parent = true
 offset_left = -65.0
 offset_top = -83.0
 offset_right = 61.0
 offset_bottom = 81.0
 
-[node name="SeventeenArea" type="Sprite2D" parent="CardiacBullseye"]
+[node name="SeventeenArea" type="Sprite2D" parent="CardiacBullseyeRest"]
 clip_children = 1
 position = Vector2(23, 11)
-texture = ExtResource("19_8h0g4")
 metadata/_edit_group_ = true
 
-[node name="SeventeenColor" type="ColorRect" parent="CardiacBullseye/SeventeenArea" groups=["all_bullseye", "lad_bullseye"]]
+[node name="SeventeenColor" type="ColorRect" parent="CardiacBullseyeRest/SeventeenArea" groups=["all_bullseye", "lad_bullseye"]]
 show_behind_parent = true
 offset_left = -64.0
 offset_top = -61.0
 offset_right = 73.0
 offset_bottom = 67.0
 
-[node name="SeventeenSegmentLines" type="Sprite2D" parent="CardiacBullseye"]
+[node name="SeventeenSegmentLines" type="Sprite2D" parent="CardiacBullseyeRest"]
+position = Vector2(19.7884, 11.8597)
+scale = Vector2(1.02851, 1.02851)
+texture = ExtResource("20_ocogh")
+
+[node name="CardiacBullseyeStress" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 952.0
+offset_top = -92.0
+offset_right = 952.0
+offset_bottom = -92.0
+grow_vertical = 2
+scale = Vector2(0.95, 0.95)
+script = ExtResource("2_va8bv")
+metadata/_edit_group_ = true
+
+[node name="OneArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(20, -119)
+texture = ExtResource("3_xnr1l")
+metadata/_edit_group_ = true
+
+[node name="OneColor" type="ColorRect" parent="CardiacBullseyeStress/OneArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.330739
+anchor_bottom = 0.342412
+offset_left = -141.0
+offset_top = -57.0
+offset_right = 137.0
+offset_bottom = -118.0
+
+[node name="TwoArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(-111, -101)
+texture = ExtResource("4_s55dx")
+metadata/_edit_group_ = true
+
+[node name="TwoColor" type="ColorRect" parent="CardiacBullseyeStress/TwoArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.236434
+anchor_right = 0.186047
+anchor_bottom = 0.143498
+offset_left = -97.0
+offset_top = -118.0
+offset_right = -10.0001
+offset_bottom = 80.9999
+
+[node name="ThreeArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(-111, 123)
+texture = ExtResource("5_t57mi")
+metadata/_edit_group_ = true
+
+[node name="ThreeColor" type="ColorRect" parent="CardiacBullseyeStress/ThreeArea" groups=["all_bullseye", "rca_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.255814
+anchor_top = -0.129464
+anchor_right = 0.170543
+offset_left = -92.0
+offset_top = -116.0
+offset_right = 89.0
+offset_bottom = 119.0
+
+[node name="FourArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(20, 143)
+texture = ExtResource("6_j2oab")
+metadata/_edit_group_ = true
+
+[node name="FourColor" type="ColorRect" parent="CardiacBullseyeStress/FourArea" groups=["all_bullseye", "rca_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.360465
+anchor_right = 0.0077821
+anchor_bottom = 0.352713
+offset_left = -139.0
+offset_top = -57.0
+offset_right = 135.0
+offset_bottom = 59.0
+
+[node name="FiveArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(151, 124)
+texture = ExtResource("7_j0uup")
+metadata/_edit_group_ = true
+
+[node name="FiveColor" type="ColorRect" parent="CardiacBullseyeStress/FiveArea" groups=["all_bullseye", "lcx_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.190661
+anchor_top = -0.0178571
+anchor_right = 0.252918
+anchor_bottom = 0.0535714
+offset_left = -90.0
+offset_top = -124.0
+offset_right = 102.0
+offset_bottom = 120.0
+
+[node name="SixArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(151, -100)
+texture = ExtResource("8_7im4s")
+metadata/_edit_group_ = true
+
+[node name="SixColor" type="ColorRect" parent="CardiacBullseyeStress/SixArea" groups=["all_bullseye", "lcx_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.272374
+anchor_right = 0.182879
+anchor_bottom = 0.188341
+offset_left = -92.0
+offset_top = -117.0
+offset_right = 94.0
+offset_bottom = 123.0
+
+[node name="SevenArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(20, -83)
+texture = ExtResource("9_bgda1")
+metadata/_edit_group_ = true
+
+[node name="SevenColor" type="ColorRect" parent="CardiacBullseyeStress/SevenArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.145161
+anchor_top = -0.27027
+anchor_bottom = 0.291892
+offset_left = -100.0
+offset_top = -57.0
+offset_right = 103.0
+offset_bottom = 58.0
+
+[node name="EightArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(-75, -70)
+texture = ExtResource("10_jb5ys")
+metadata/_edit_group_ = true
+
+[node name="EightColor" type="ColorRect" parent="CardiacBullseyeStress/EightArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.241935
+anchor_right = 0.311828
+anchor_bottom = 0.0621118
+offset_left = -82.0
+offset_top = -88.0
+offset_right = 85.0
+offset_bottom = 102.0
+
+[node name="NineArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(-75, 92)
+texture = ExtResource("11_gqe6u")
+metadata/_edit_group_ = true
+
+[node name="NineColor" type="ColorRect" parent="CardiacBullseyeStress/NineArea" groups=["all_bullseye", "rca_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.231183
+anchor_top = -0.0123457
+anchor_right = 0.22043
+anchor_bottom = 0.0432099
+offset_left = -84.0
+offset_top = -97.0
+offset_right = 84.0
+offset_bottom = 99.0
+
+[node name="TenArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(20, 107)
+texture = ExtResource("12_tj3tr")
+metadata/_edit_group_ = true
+
+[node name="TenColor" type="ColorRect" parent="CardiacBullseyeStress/TenArea" groups=["all_bullseye", "rca_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.419355
+anchor_right = 0.0322581
+anchor_bottom = 0.327957
+offset_left = -101.0
+offset_top = -61.0
+offset_right = 106.0
+offset_bottom = 60.0
+
+[node name="ElevenArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(115, 93)
+texture = ExtResource("13_7kwb3")
+metadata/_edit_group_ = true
+
+[node name="ElevenColor" type="ColorRect" parent="CardiacBullseyeStress/ElevenArea" groups=["all_bullseye", "lcx_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.221622
+anchor_top = -0.12963
+anchor_right = 0.248649
+anchor_bottom = 0.135802
+offset_left = -82.0
+offset_top = -92.0
+offset_right = 75.0
+offset_bottom = 95.0
+
+[node name="TweleveArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(115, -69)
+texture = ExtResource("14_hx70q")
+metadata/_edit_group_ = true
+
+[node name="TwelveColor" type="ColorRect" parent="CardiacBullseyeStress/TweleveArea" groups=["all_bullseye", "lcx_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.172973
+anchor_top = -0.0186335
+anchor_right = 0.178378
+anchor_bottom = -0.0186335
+offset_left = -80.0
+offset_top = -86.0
+offset_right = 75.0
+offset_bottom = 103.0
+
+[node name="ThirteenArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(20, -47)
+texture = ExtResource("15_vov6u")
+metadata/_edit_group_ = true
+
+[node name="ThirteenColor" type="ColorRect" parent="CardiacBullseyeStress/ThirteenArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.205357
+anchor_bottom = 0.223214
+offset_left = -108.0
+offset_top = -49.0
+offset_right = 106.0
+offset_bottom = 50.0
+
+[node name="FourteenArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(-37, 10)
+texture = ExtResource("16_86tcf")
+metadata/_edit_group_ = true
+
+[node name="FourteenColor" type="ColorRect" parent="CardiacBullseyeStress/FourteenArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.15625
+offset_left = -62.0
+offset_top = -76.0
+offset_right = 57.0
+offset_bottom = 91.0
+
+[node name="FifteenArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(20, 67)
+texture = ExtResource("17_661hm")
+metadata/_edit_group_ = true
+
+[node name="FifteenColor" type="ColorRect" parent="CardiacBullseyeStress/FifteenArea" groups=["all_bullseye", "rca_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.292035
+anchor_bottom = 0.221239
+offset_left = -106.0
+offset_top = -49.0
+offset_right = 114.0
+offset_bottom = 48.0
+
+[node name="SixteenArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(77, 10)
+texture = ExtResource("18_sr4o5")
+metadata/_edit_group_ = true
+
+[node name="SixteenColor" type="ColorRect" parent="CardiacBullseyeStress/SixteenArea" groups=["all_bullseye", "lcx_bullseye"]]
+show_behind_parent = true
+offset_left = -65.0
+offset_top = -83.0
+offset_right = 61.0
+offset_bottom = 81.0
+
+[node name="SeventeenArea" type="Sprite2D" parent="CardiacBullseyeStress"]
+clip_children = 1
+position = Vector2(23, 11)
+metadata/_edit_group_ = true
+
+[node name="SeventeenColor" type="ColorRect" parent="CardiacBullseyeStress/SeventeenArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+offset_left = -64.0
+offset_top = -61.0
+offset_right = 73.0
+offset_bottom = 67.0
+
+[node name="SeventeenSegmentLines" type="Sprite2D" parent="CardiacBullseyeStress"]
+position = Vector2(19.7884, 11.8597)
+scale = Vector2(1.02851, 1.02851)
+texture = ExtResource("20_ocogh")
+
+[node name="CardiacBullseyeDifference" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1571.0
+offset_top = -92.0
+offset_right = 1571.0
+offset_bottom = -92.0
+grow_vertical = 2
+scale = Vector2(0.95, 0.95)
+script = ExtResource("2_va8bv")
+metadata/_edit_group_ = true
+
+[node name="OneArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(20, -119)
+texture = ExtResource("3_xnr1l")
+metadata/_edit_group_ = true
+
+[node name="OneColor" type="ColorRect" parent="CardiacBullseyeDifference/OneArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.330739
+anchor_bottom = 0.342412
+offset_left = -141.0
+offset_top = -57.0
+offset_right = 137.0
+offset_bottom = -118.0
+
+[node name="TwoArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(-111, -101)
+texture = ExtResource("4_s55dx")
+metadata/_edit_group_ = true
+
+[node name="TwoColor" type="ColorRect" parent="CardiacBullseyeDifference/TwoArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.236434
+anchor_right = 0.186047
+anchor_bottom = 0.143498
+offset_left = -97.0
+offset_top = -118.0
+offset_right = -10.0001
+offset_bottom = 80.9999
+
+[node name="ThreeArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(-111, 123)
+texture = ExtResource("5_t57mi")
+metadata/_edit_group_ = true
+
+[node name="ThreeColor" type="ColorRect" parent="CardiacBullseyeDifference/ThreeArea" groups=["all_bullseye", "rca_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.255814
+anchor_top = -0.129464
+anchor_right = 0.170543
+offset_left = -92.0
+offset_top = -116.0
+offset_right = 89.0
+offset_bottom = 119.0
+
+[node name="FourArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(20, 143)
+texture = ExtResource("6_j2oab")
+metadata/_edit_group_ = true
+
+[node name="FourColor" type="ColorRect" parent="CardiacBullseyeDifference/FourArea" groups=["all_bullseye", "rca_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.360465
+anchor_right = 0.0077821
+anchor_bottom = 0.352713
+offset_left = -139.0
+offset_top = -57.0
+offset_right = 135.0
+offset_bottom = 59.0
+
+[node name="FiveArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(151, 124)
+texture = ExtResource("7_j0uup")
+metadata/_edit_group_ = true
+
+[node name="FiveColor" type="ColorRect" parent="CardiacBullseyeDifference/FiveArea" groups=["all_bullseye", "lcx_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.190661
+anchor_top = -0.0178571
+anchor_right = 0.252918
+anchor_bottom = 0.0535714
+offset_left = -90.0
+offset_top = -124.0
+offset_right = 102.0
+offset_bottom = 120.0
+
+[node name="SixArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(151, -100)
+texture = ExtResource("8_7im4s")
+metadata/_edit_group_ = true
+
+[node name="SixColor" type="ColorRect" parent="CardiacBullseyeDifference/SixArea" groups=["all_bullseye", "lcx_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.272374
+anchor_right = 0.182879
+anchor_bottom = 0.188341
+offset_left = -92.0
+offset_top = -117.0
+offset_right = 94.0
+offset_bottom = 123.0
+
+[node name="SevenArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(20, -83)
+texture = ExtResource("9_bgda1")
+metadata/_edit_group_ = true
+
+[node name="SevenColor" type="ColorRect" parent="CardiacBullseyeDifference/SevenArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.145161
+anchor_top = -0.27027
+anchor_bottom = 0.291892
+offset_left = -100.0
+offset_top = -57.0
+offset_right = 103.0
+offset_bottom = 58.0
+
+[node name="EightArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(-75, -70)
+texture = ExtResource("10_jb5ys")
+metadata/_edit_group_ = true
+
+[node name="EightColor" type="ColorRect" parent="CardiacBullseyeDifference/EightArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.241935
+anchor_right = 0.311828
+anchor_bottom = 0.0621118
+offset_left = -82.0
+offset_top = -88.0
+offset_right = 85.0
+offset_bottom = 102.0
+
+[node name="NineArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(-75, 92)
+texture = ExtResource("11_gqe6u")
+metadata/_edit_group_ = true
+
+[node name="NineColor" type="ColorRect" parent="CardiacBullseyeDifference/NineArea" groups=["all_bullseye", "rca_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.231183
+anchor_top = -0.0123457
+anchor_right = 0.22043
+anchor_bottom = 0.0432099
+offset_left = -84.0
+offset_top = -97.0
+offset_right = 84.0
+offset_bottom = 99.0
+
+[node name="TenArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(20, 107)
+texture = ExtResource("12_tj3tr")
+metadata/_edit_group_ = true
+
+[node name="TenColor" type="ColorRect" parent="CardiacBullseyeDifference/TenArea" groups=["all_bullseye", "rca_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.419355
+anchor_right = 0.0322581
+anchor_bottom = 0.327957
+offset_left = -101.0
+offset_top = -61.0
+offset_right = 106.0
+offset_bottom = 60.0
+
+[node name="ElevenArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(115, 93)
+texture = ExtResource("13_7kwb3")
+metadata/_edit_group_ = true
+
+[node name="ElevenColor" type="ColorRect" parent="CardiacBullseyeDifference/ElevenArea" groups=["all_bullseye", "lcx_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.221622
+anchor_top = -0.12963
+anchor_right = 0.248649
+anchor_bottom = 0.135802
+offset_left = -82.0
+offset_top = -92.0
+offset_right = 75.0
+offset_bottom = 95.0
+
+[node name="TweleveArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(115, -69)
+texture = ExtResource("14_hx70q")
+metadata/_edit_group_ = true
+
+[node name="TwelveColor" type="ColorRect" parent="CardiacBullseyeDifference/TweleveArea" groups=["all_bullseye", "lcx_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = -0.172973
+anchor_top = -0.0186335
+anchor_right = 0.178378
+anchor_bottom = -0.0186335
+offset_left = -80.0
+offset_top = -86.0
+offset_right = 75.0
+offset_bottom = 103.0
+
+[node name="ThirteenArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(20, -47)
+texture = ExtResource("15_vov6u")
+metadata/_edit_group_ = true
+
+[node name="ThirteenColor" type="ColorRect" parent="CardiacBullseyeDifference/ThirteenArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.205357
+anchor_bottom = 0.223214
+offset_left = -108.0
+offset_top = -49.0
+offset_right = 106.0
+offset_bottom = 50.0
+
+[node name="FourteenArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(-37, 10)
+texture = ExtResource("16_86tcf")
+metadata/_edit_group_ = true
+
+[node name="FourteenColor" type="ColorRect" parent="CardiacBullseyeDifference/FourteenArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.15625
+offset_left = -62.0
+offset_top = -76.0
+offset_right = 57.0
+offset_bottom = 91.0
+
+[node name="FifteenArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(20, 67)
+texture = ExtResource("17_661hm")
+metadata/_edit_group_ = true
+
+[node name="FifteenColor" type="ColorRect" parent="CardiacBullseyeDifference/FifteenArea" groups=["all_bullseye", "rca_bullseye"]]
+show_behind_parent = true
+anchors_preset = -1
+anchor_top = -0.292035
+anchor_bottom = 0.221239
+offset_left = -106.0
+offset_top = -49.0
+offset_right = 114.0
+offset_bottom = 48.0
+
+[node name="SixteenArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(77, 10)
+texture = ExtResource("18_sr4o5")
+metadata/_edit_group_ = true
+
+[node name="SixteenColor" type="ColorRect" parent="CardiacBullseyeDifference/SixteenArea" groups=["all_bullseye", "lcx_bullseye"]]
+show_behind_parent = true
+offset_left = -65.0
+offset_top = -83.0
+offset_right = 61.0
+offset_bottom = 81.0
+
+[node name="SeventeenArea" type="Sprite2D" parent="CardiacBullseyeDifference"]
+clip_children = 1
+position = Vector2(23, 11)
+metadata/_edit_group_ = true
+
+[node name="SeventeenColor" type="ColorRect" parent="CardiacBullseyeDifference/SeventeenArea" groups=["all_bullseye", "lad_bullseye"]]
+show_behind_parent = true
+offset_left = -64.0
+offset_top = -61.0
+offset_right = 73.0
+offset_bottom = 67.0
+
+[node name="SeventeenSegmentLines" type="Sprite2D" parent="CardiacBullseyeDifference"]
 position = Vector2(19.7884, 11.8597)
 scale = Vector2(1.02851, 1.02851)
 texture = ExtResource("20_ocogh")
 
 [node name="ColorPanel" type="Panel" parent="."]
-offset_right = 123.0
-offset_bottom = 67.0
+offset_left = 25.0
+offset_top = 27.0
+offset_right = 285.0
+offset_bottom = 158.0
 scale = Vector2(0.865, 0.865)
+metadata/_edit_group_ = true
 
 [node name="HeatMap" type="CheckButton" parent="ColorPanel"]
 layout_mode = 2
-offset_right = 124.0
-offset_bottom = 34.0
+offset_right = 123.0
+offset_bottom = 31.0
+scale = Vector2(2, 2)
 button_group = SubResource("ButtonGroup_va8bv")
 text = "Heat Map"
 
 [node name="Greyscale" type="CheckButton" parent="ColorPanel"]
 layout_mode = 0
-offset_top = 33.526
-offset_right = 123.0
-offset_bottom = 67.526
+offset_left = -1.7643e-05
+offset_top = 62.4277
+offset_right = 124.0
+offset_bottom = 96.4277
+scale = Vector2(2, 2)
 button_group = SubResource("ButtonGroup_va8bv")
 text = "Greyscale"
 
-[connection signal="value_changed" from="3SliderSetup/SliderBox/LADSlider" to="." method="_on_lad_slider_value_changed"]
-[connection signal="value_changed" from="3SliderSetup/SliderBox/RCASlider" to="." method="_on_rca_slider_value_changed"]
-[connection signal="value_changed" from="3SliderSetup/SliderBox/LCXSlider" to="." method="_on_lcx_slider_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider1" to="." method="_on_v_slider_1_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider2" to="." method="_on_v_slider_2_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider3" to="." method="_on_v_slider_3_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider4" to="." method="_on_v_slider_4_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider5" to="." method="_on_v_slider_5_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider6" to="." method="_on_v_slider_6_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider7" to="." method="_on_v_slider_7_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider8" to="." method="_on_v_slider_8_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider9" to="." method="_on_v_slider_9_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider10" to="." method="_on_v_slider_10_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider11" to="." method="_on_v_slider_11_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider12" to="." method="_on_v_slider_12_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider13" to="." method="_on_v_slider_13_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider14" to="." method="_on_v_slider_14_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider15" to="." method="_on_v_slider_15_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider16" to="." method="_on_v_slider_16_value_changed"]
-[connection signal="value_changed" from="17SliderSetup/SliderContainer/VSlider17" to="." method="_on_v_slider_17_value_changed"]
+[node name="SliderPanel" type="Panel" parent="."]
+offset_left = 264.0
+offset_top = 27.0
+offset_right = 770.0
+offset_bottom = 158.0
+scale = Vector2(0.865, 0.865)
+metadata/_edit_group_ = true
+
+[node name="ArterySliders" type="CheckButton" parent="SliderPanel"]
+layout_mode = 2
+offset_right = 123.0
+offset_bottom = 31.0
+scale = Vector2(2, 2)
+button_group = SubResource("ButtonGroup_va8bv")
+text = "Coronary Artery Sliders"
+
+[node name="SegmentSliders" type="CheckButton" parent="SliderPanel"]
+layout_mode = 0
+offset_left = -1.7643e-05
+offset_top = 62.4277
+offset_right = 124.0
+offset_bottom = 96.4277
+scale = Vector2(2, 2)
+button_group = SubResource("ButtonGroup_va8bv")
+text = "Individual Segment Sliders"
+
+[node name="InformationPanel" type="Panel" parent="."]
+offset_left = 716.0
+offset_top = 27.0
+offset_right = 1026.0
+offset_bottom = 158.0
+scale = Vector2(0.865, 0.865)
+metadata/_edit_group_ = true
+
+[node name="Numbers" type="CheckButton" parent="InformationPanel"]
+layout_mode = 2
+offset_right = 123.0
+offset_bottom = 31.0
+scale = Vector2(2, 2)
+button_group = SubResource("ButtonGroup_va8bv")
+text = "Numbers"
+
+[node name="Key" type="CheckButton" parent="InformationPanel"]
+layout_mode = 0
+offset_left = -1.7643e-05
+offset_top = 62.4277
+offset_right = 124.0
+offset_bottom = 96.4277
+scale = Vector2(2, 2)
+button_group = SubResource("ButtonGroup_va8bv")
+text = "Segment Key"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -296.0
+offset_right = -16.0
+offset_bottom = -72.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("21_va8bv")
+metadata/_edit_group_ = true
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("21_va8bv")
+theme_override_font_sizes/font_size = 18
+text = "1. Basal Anterior
+2. Basal Anteroseptal
+3. Basal Inferoseptal
+4. Basal Inferior
+5. Basal Inferolateral
+6. Basal Anterolateral"
+
+[node name="TextEdit2" type="TextEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "7. Mid Anterior
+8. Mid Anteroseptal
+9. Mid Inferoseptal
+10. Mid Inferior
+11. Mid Inferolateral
+12. Mid Anterolateral"
+
+[node name="TextEdit3" type="TextEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "13. Apical Anterior
+14. Apical Septal
+15. Apical Inferior
+16. Apical Lateral
+17. Apex"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1619.0
+offset_top = 27.0
+offset_right = 1883.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 30
+text = "Exit Simulation"
+
+[connection signal="value_changed" from="3SliderSetupRest/SliderBox/LADSlider" to="." method="_on_lad_slider_value_changed"]
+[connection signal="value_changed" from="3SliderSetupRest/SliderBox/RCASlider" to="." method="_on_rca_slider_value_changed"]
+[connection signal="value_changed" from="3SliderSetupRest/SliderBox/LCXSlider" to="." method="_on_lcx_slider_value_changed"]
+[connection signal="value_changed" from="3SliderSetupRest2/SliderBox/LADSlider" to="." method="_on_lad_slider_value_changed"]
+[connection signal="value_changed" from="3SliderSetupRest2/SliderBox/RCASlider" to="." method="_on_rca_slider_value_changed"]
+[connection signal="value_changed" from="3SliderSetupRest2/SliderBox/LCXSlider" to="." method="_on_lcx_slider_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider1" to="." method="_on_v_slider_1_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider2" to="." method="_on_v_slider_2_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider3" to="." method="_on_v_slider_3_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider4" to="." method="_on_v_slider_4_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider5" to="." method="_on_v_slider_5_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider6" to="." method="_on_v_slider_6_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider7" to="." method="_on_v_slider_7_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider8" to="." method="_on_v_slider_8_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider9" to="." method="_on_v_slider_9_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider10" to="." method="_on_v_slider_10_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider11" to="." method="_on_v_slider_11_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider12" to="." method="_on_v_slider_12_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider13" to="." method="_on_v_slider_13_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider14" to="." method="_on_v_slider_14_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider15" to="." method="_on_v_slider_15_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider16" to="." method="_on_v_slider_16_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest/SliderContainer/VSlider17" to="." method="_on_v_slider_17_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider1" to="." method="_on_v_slider_1_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider2" to="." method="_on_v_slider_2_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider3" to="." method="_on_v_slider_3_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider4" to="." method="_on_v_slider_4_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider5" to="." method="_on_v_slider_5_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider6" to="." method="_on_v_slider_6_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider7" to="." method="_on_v_slider_7_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider8" to="." method="_on_v_slider_8_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider9" to="." method="_on_v_slider_9_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider10" to="." method="_on_v_slider_10_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider11" to="." method="_on_v_slider_11_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider12" to="." method="_on_v_slider_12_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider13" to="." method="_on_v_slider_13_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider14" to="." method="_on_v_slider_14_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider15" to="." method="_on_v_slider_15_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider16" to="." method="_on_v_slider_16_value_changed"]
+[connection signal="value_changed" from="17SliderSetupRest2/SliderContainer/VSlider17" to="." method="_on_v_slider_17_value_changed"]
 [connection signal="pressed" from="ColorPanel/HeatMap" to="." method="_on_heat_map_pressed"]
 [connection signal="pressed" from="ColorPanel/Greyscale" to="." method="_on_greyscale_pressed"]
+[connection signal="pressed" from="SliderPanel/ArterySliders" to="." method="_on_heat_map_pressed"]
+[connection signal="pressed" from="SliderPanel/SegmentSliders" to="." method="_on_greyscale_pressed"]
+[connection signal="pressed" from="InformationPanel/Numbers" to="." method="_on_heat_map_pressed"]
+[connection signal="pressed" from="InformationPanel/Key" to="." method="_on_greyscale_pressed"]
